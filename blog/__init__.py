@@ -9,7 +9,7 @@ import datetime
 app = Flask(__name__)
 
 
-app.config['SECRET_KEY'] = '1a94670cb42475d42189'
+app.config['SECRET_KEY'] = 'dev'
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
