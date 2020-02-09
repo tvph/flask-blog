@@ -1,2 +1,3 @@
 # flask-blog
-Personal blog using Flask
+Personal blog using flask
+
