@@ -1,8 +1,6 @@
 from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
-# from models import User
-# from datetime import datetime
 import datetime
 
 
@@ -15,20 +13,7 @@ app.config['SECRET_KEY'] = 'dev'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 # db=SQLAlchemy(app)
 
-posts = [
-    {
-        'author': 'tran viet phuoc',
-        'title': 'blog post 1',
-        'content': 'first blog content',
-        'date_posted': datetime.date(2019, 8, 20)
-    },
-    {
-        'author': 'phuoc tran viet',
-        'title': 'blog post 2',
-        'content': 'second blog content',
-        'date_posted': datetime.date(2019, 8, 21)
-    }
-]
+posts = []
 
 
 @app.route('/')
@@ -49,4 +34,6 @@ def about():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
+
