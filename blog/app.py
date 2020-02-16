@@ -4,15 +4,13 @@ import os
 import datetime
 import secrets
 from blog.forms import RegistrationForm, LoginForm, SearchForm
-
+from blog.models import User, Post
 app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = str(secrets.token_hex(16))
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-# db=SQLAlchemy(app)
 
 posts = []
 

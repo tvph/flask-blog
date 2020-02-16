@@ -4,14 +4,14 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <!--Left side navbar-->
         <div class="container">
-            <a href="#" class="navbar nav-brand mr-4">Flask Blog</a>
+            <a href="{{ url_for('home') }}" class="navbar nav-brand mr-4">Flask Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav mr-auto">
-                    <a href="#" class="navbar navbar-link">Register</a>
-                    <a href="#" class="navbar navbar-link">Log in</a>
+                    <a href="{{ url_for('register') }}" class="navbar navbar-link">Register</a>
+                    <a href="{{ url_for('login') }}" class="navbar navbar-link">Log in</a>
                 </div>
             </div>
             <!--Right side navbar-->
