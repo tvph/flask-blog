@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from blog.app import app
+from blog.apps import app
 import datetime
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

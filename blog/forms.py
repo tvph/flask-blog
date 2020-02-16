@@ -14,8 +14,8 @@ class RegistrationForm(FlaskForm):
 
     submit = SubmitField('Sign up')
 
-    def __repr__(self):
-        return "'Username: '{}, 'Email: '{}".format(self.username, self.email)
+    # def __repr__(self):
+    #     return "'Username: '{}, 'Email: '{}".format(self.username, self.email)
 
 
 class LoginForm(FlaskForm):

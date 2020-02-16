@@ -4,7 +4,9 @@ import os
 import datetime
 import secrets
 from blog.forms import RegistrationForm, LoginForm, SearchForm
-from blog.models import User, Post
+from blog.models import User, Post, db
+
+
 app = Flask(__name__)
 
 
@@ -56,7 +58,4 @@ def search():
     form = SearchForm()
     return render_template('search.html')
 
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
 
