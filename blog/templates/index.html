@@ -4,19 +4,19 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <!--Left side navbar-->
         <div class="container">
-            <a href="{{ url_for('home') }}" class="navbar nav-brand mr-4">Flask Blog</a>
+            <a href="#" class="navbar nav-brand mr-4">Flask Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav mr-auto">
-                    <a href="{{ url_for('register') }}" class="navbar navbar-link">Register</a>
-                    <a href="{{ url_for('login') }}" class="navbar navbar-link">Login</a>
+                    <a href="#" class="navbar navbar-link">Register</a>
+                    <a href="#" class="navbar navbar-link">Log in</a>
                 </div>
             </div>
             <!--Right side navbar-->
             <div class="navbar-nav">
-                <form action="{{ url_for('search') }}" class="form-inline mr-4">
+                <form action="#" class="form-inline mr-4">
                     <input type="text" class="form-control mr-sm-2" placeholder="Search">
                     <button class="btn btn-info">Search</button>
                 </form>
@@ -26,8 +26,8 @@
 {% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-6 col-sm-8 col-md-6">
-            <form action="{{ url_for('login') }}" class="needs-validation" method="POST" novalidate>
+        <div class="content">
+            <form action="#" class="needs-validation" method="POST" novalidate>
                 <div class="form-group">
                     <label for="email">Email address:</label>
                     <input type="email" class="form-control" placeholder="Enter email" id="email" required>
@@ -44,12 +44,12 @@
                     <label for="form-check-label">
                         <input class="form-check-input" type="checkbox">Remember me
                     </label>
-                    <a href="{{ url_for('register') }}" class="nav-link">You didn't have an account?</a>
+                    <a href="#" class="nav-link">You didn't have an account?</a>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Log in</button>
             </form>
         </div>
-        <div class="col-6 col-sm-4 col-md-6">
+        <div class="col-sm-8 col-md-6 col-lg-4">
             <h3>Sidebar</h3>
             <p class="text-muted">Some infomation</p>
             <ul class="list-group">

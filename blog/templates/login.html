@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <!--Left side navbar-->
         <div class="container">
-            <a href="#" class="navbar nav-brand mr-4">Flask Blog</a>
+            <a href="{{ url_for('home') }}" class="navbar nav-brand mr-4">Flask Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,28 +25,33 @@
     </nav>
 {% endblock %}
 {% block content %}
-    <div class="row">
+    <div class="content">
         <form action="{{ url_for('login') }}" class="needs-validation" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-auto mb-4">Log in</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control form-control-sm") }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control form-control-sm") }}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
             <div class="form-group">
-                <!--check valid email-->
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" placeholder="Enter email" id="email" required>
-                <div class="valid-feedback">Valid!</div>
-                <div class="invalid-feedback">Invalid! Email is required</div>
+                {{ form.submit(class="btn btn-primary") }}
             </div>
-            <div class="form-group">
-                <!--check valid password-->
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
-                <div class="valid-feedback">Valid!</div>
-                <div class="invalid-feedback">Invalid! Password is required</div>
-            </div>
-            <div class="form-group form-inline mr-sm-2">
-                <label for="form-check-label">
-                    <input type="checkbox" class="form-check-input">Remember me
-                </label>
-                <a href="{{ url_for('register') }}" class="nav-link">You didn't have an account?</a>
-            </div>
+            <small class="text-muted ml-2">
+                <a href="#">Forgot password?</a>
+            </small>
         </form>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">Need an account?<a href="{{ url_for('register') }}" class="ml-2">Sign up</a></small>
     </div>
 {% endblock %}

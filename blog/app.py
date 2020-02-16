@@ -2,12 +2,13 @@ from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 import datetime
-from . import forms
+import secrets
+from blog.forms import RegistrationForm, LoginForm, SearchForm
 
 app = Flask(__name__)
 
 
-app.config['SECRET_KEY'] = 'dev'
+app.config['SECRET_KEY'] = str(secrets.token_hex(16))
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -29,13 +30,32 @@ def about():
 @app.route('/home')
 def home():
     return render_template('home.html', posts=posts)
-# @app.route('register',method=['GET','POST'])
-# def register():
 
 
-#  @app.route('login',method=['GET','POST'])
-#  def login():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('index'))
+    return render_template('register.html', title='Register', form=form)
 
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@gmail.com' and form.password.data == 'password':
+            flash(f'You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash(f'Login unsuccessful. Please check email and password', 'danger')
+    return render_template('login.html', title='Log in', form=form)
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form = SearchForm()
+    return render_template('search.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
