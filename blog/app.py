@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 import datetime
-
+from . import forms
 
 app = Flask(__name__)
 
@@ -17,8 +17,8 @@ posts = []
 
 
 @app.route('/')
-def home():
-    return render_template('home.html', posts=posts)
+def index():
+    return render_template('index.html', posts=posts)
 
 
 @app.route('/about')
