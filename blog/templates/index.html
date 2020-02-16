@@ -25,38 +25,33 @@
     </nav>
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="content">
-            <form action="#" class="needs-validation" method="POST" novalidate>
+    <div class="content">
+        <form action="{{ url_for('login') }}" class="needs-validation" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-auto mb-4">Log in</legend>
                 <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" class="form-control" placeholder="Enter email" id="email" required>
-                    <div class="valid-feedback">Valid</div>
-                    <div class="invalid-feedback">Please fill out this field</div>
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control form-control-sm") }}
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" placeholder="Enter password" id="pwd" required>
-                    <div class="valid-feedback">Valid</div>
-                    <div class="invalid-feedback">Please fill out this field</div>
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control form-control-sm") }}
                 </div>
-                <div class="form-group form-inline mr-sm-2">
-                    <label for="form-check-label">
-                        <input class="form-check-input" type="checkbox">Remember me
-                    </label>
-                    <a href="#" class="nav-link">You didn't have an account?</a>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
                 </div>
-                <button type="submit" class="btn btn-primary">Log in</button>
-            </form>
-        </div>
-        <div class="col-sm-8 col-md-6 col-lg-4">
-            <h3>Sidebar</h3>
-            <p class="text-muted">Some infomation</p>
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest post</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendar</li>
-            </ul>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+            <small class="text-muted ml-2">
+                <a href="#">Forgot password?</a>
+            </small>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Need an account?<a href="{{ url_for('register') }}" class="ml-2">Sign up</a></small>
         </div>
     </div>
 {% endblock %}

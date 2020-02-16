@@ -19,7 +19,8 @@ posts = []
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    form = LoginForm()
+    return render_template('index.html', title='Index', form=form)
 
 
 @app.route('/about')

@@ -21,22 +21,33 @@
         {% endblock %}
     </header>
     <main role="main" class="container">
-        <div class="col-sm-8 col-md-6 col-lg-8">
-            {% with messages = get_flashed_messages(with_categories=True) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+        <div class="row">
+            <div class="col-sm-4 col-md-6 col-lg-8">
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% endif %}
+                {% endwith %}
+            </div>
         </div>
-        <div class="col-sm-4 col-md-6 col-lg-8">
-            {% block content%}
-            {% endblock %}
-        </div>
-
+        <div class="row">
+            <div class="col-sm-4 col-md-6 col-lg-8">
+                {% block content%}
+                {% endblock %}
+            </div>
+            <div class="col-sm-8 col-md-6 col-lg-4">
+                <h3>Sidebar</h3>
+                <p class="text-muted">Some infomation</p>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Latest post</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">Calendar</li>
+                </ul>
+            </div>
     </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
