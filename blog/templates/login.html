@@ -8,11 +8,25 @@
                 <legend class="border-auto mb-4">Log in</legend>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
-                    {{ form.email(class="form-control form-control-sm") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-sm is-invalid") }}
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    {% else %}
+                        {{ form.email(class="form-control form-control-sm") }}
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     {{ form.password.label(class="form-control-label") }}
-                    {{ form.password(class="form-control form-control-sm") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-sm is-invalid") }}
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    {% else %}
+                        {{ form.password(class="form-control form-control-sm") }}
+                    {% endif %}
                 </div>
                 <div class="form-check">
                     {{ form.remember(class="form-check-input") }}

@@ -17,6 +17,7 @@ flake8 = "*"
 jedi = "*"
 flask-bcrypt = "*"
 flask-login = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"
