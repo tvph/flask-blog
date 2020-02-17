@@ -1,5 +1,15 @@
 {% extends 'layout.html' %}
-
+{% block title %}About{% endblock title %}
 {% block content %}
-    <h1>{{ current_user.user_name }}</h1>
+    <div class="content">
+        <div class="media">
+            <img src="{{ picture }}" alt="profile picture" class="rounded-circle account-img">
+            <div class="media-body">
+                <h2 class="account-heading">{{ current_user.username }}</h2>
+                <p class="text-secondary">{{ current_user.email }}</p>
+            </div>
+        </div>
+        <!--Form here-->
+
+    </div>
 {% endblock content %}

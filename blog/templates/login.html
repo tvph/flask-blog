@@ -1,29 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %}{% endblock %}
-{% block header %}
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <!--Left side navbar-->
-        <div class="container">
-            <a href="{{ url_for('home') }}" class="navbar nav-brand mr-4">Flask Blog</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggle">
-                <div class="navbar-nav mr-auto">
-                    <a href="{{ url_for('register') }}" class="navbar navbar-link">Register</a>
-                    <a href="{{ url_for('login') }}" class="navbar navbar-link">Login</a>
-                </div>
-            </div>
-            <!--Right side navbar-->
-            <div class="navbar-nav">
-                <form action="#" class="form-inline mr-4">
-                    <input type="text" class="form-control mr-sm-2" placeholder="Search">
-                    <button class="btn btn-info">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-{% endblock %}
+{% block title %}Log in{% endblock title %}
 {% block content %}
     <div class="content">
         <form action="{{ url_for('login') }}" class="needs-validation" method="POST" novalidate>
@@ -54,4 +30,4 @@
     <div class="border-top pt-3">
         <small class="text-muted">Need an account?<a href="{{ url_for('register') }}" class="ml-2">Sign up</a></small>
     </div>
-{% endblock %}
+{% endblock content %}

@@ -18,7 +18,8 @@ def home():
 @app.route('/about')
 @login_required
 def about():
-    return render_template('about.html', title='About')
+    picture = url_for('static', filename='pictures/' + current_user.picture)
+    return render_template('about.html', title='About', picture=picture)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -54,7 +55,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():

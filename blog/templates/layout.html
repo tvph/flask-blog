@@ -7,18 +7,46 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     
     {% if title %}
         <title>Flask blog - {{ title }}</title>
     {% else %}
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock title %}</title>
     {% endif %}
 </head>
 <body>
     <header class="blog-header">
-        {% block header%}
-        {% endblock %}
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+            <!--Left side navbar-->
+            <div class="container">
+                <a href="{{ url_for('home') }}" class="navbar nav-brand mr-4">Flask Blog</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        {% if current_user.is_authenticated %}
+                        <!--if user is authenticated then render this navbar-->
+                        <a href="{{ url_for('home') }}" class="navbar navbar-link">Home</a>
+                        <a href="{{ url_for('about') }}" class="navbar navbar-link">About</a>
+                        <a href="{{ url_for('logout') }}" class="navbar navbar-link">Log out</a>
+                        {% else %}
+                        <!--else render this navbar-->
+                        <a href="{{ url_for('register') }}" class="navbar navbar-link">Register</a>
+                        <a href="{{ url_for('login') }}" class="navbar navbar-link">Log in</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <!--Right side navbar-->
+                <div class="navbar-nav">
+                    <form action="#" class="form-inline mr-4">
+                        <input type="text" class="form-control mr-sm-2" placeholder="Search">
+                        <button class="btn btn-info">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
     </header>
     <main role="main" class="container">
         <div class="row">
@@ -37,7 +65,7 @@
         <div class="row">
             <div class="col-sm-4 col-md-6 col-lg-8">
                 {% block content%}
-                {% endblock %}
+                {% endblock content %}
             </div>
             <div class="col-sm-8 col-md-6 col-lg-4">
                 <h3>Sidebar</h3>
