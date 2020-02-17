@@ -3,9 +3,18 @@
 {% block content %}
     <div class="content">
         {% for post in posts %}
-            <h1>{{ post.title }}</h1>
-            <p>By {{ post.author}} on {{ post.date_posted }}</p>
-            <p>{{ post.content }}</p>
+            <article class="media content">
+                <img src="{{ url_for('static', filename='pictures/' + post.author.picture) }}" alt="{{ post.author.username }}" class="rounded-circel article-img">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a href="#" class="mr-2">{{ post.author.username }}</a>
+                        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+                    </div>
+                    <h2><a href="{{ url_for('post', post_id=post.id) }}" class="article-title">{{ post.title }}</a></h2>
+                    <p class="article-content">{{ post.content }}</p>
+                </div>
+                
+            </article>
         {% endfor %}
     </div>
 {% endblock content %}

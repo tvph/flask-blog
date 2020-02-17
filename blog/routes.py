@@ -1,4 +1,4 @@
-from flask import request, render_template, flash, redirect, url_for
+from flask import request, render_template, flash, redirect, url_for, abort
 from blog.forms import RegistrationForm, LoginForm, SearchForm, UpdateForm, PostForm
 from blog.models import User, Post
 from blog import app, db, crypt
@@ -18,6 +18,7 @@ def index():
 
 
 @app.route('/home')
+@login_required
 def home():
     posts = Post.query.all()
     return render_template('home.html', posts=posts, title='Home')
@@ -118,3 +119,43 @@ def new_post():
         flash(f'Your post has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create.html', title='New post', form=form)
+
+
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title=post.title, post=post)
+
+
+@app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(404)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash(f'Your post have been updated!', 'success')
+        return redirect(url_for('post', post_id=post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create.html', title='Update post', form=form)
+
+
+@app.route('/post/<int:post_id>/delete', methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(404)
+    
+    db.session.delete(post)
+    db.session.commit()
+    flash(f'Your post have been deleted.', 'success')
+    return redirect(url_for('home'))
+    
+    
