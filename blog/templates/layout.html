@@ -39,12 +39,16 @@
                         {% endif %}
                     </div>
                 </div>
-                <!--Right side navbar-->
+                <!--Right side navbar only active user in session-->
                 <div class="navbar-nav">
-                    <form action="#" class="form-inline mr-4">
-                        <input type="text" class="form-control mr-sm-2" placeholder="Search">
-                        <button class="btn btn-info">Search</button>
-                    </form>
+                    {% if current_user.is_authenticated %}
+                        <form action="#" class="form-inline mr-4">
+                            <input type="text" class="form-control mr-sm-2" placeholder="Search">
+                            <button class="btn btn-info">Search</button>
+                        </form>
+                    {% else %}
+                        <a href="https://flask.palletsprojects.com" class="navbar navbar-link">Powered by Flask</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
