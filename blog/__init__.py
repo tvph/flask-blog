@@ -1,8 +1,19 @@
 # init
-from blog.apps import app
-from blog.models import db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import secrets
 
 
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+app = Flask(__name__)
+
+app.config['SECRET_KEY'] = str(secrets.token_hex(16))
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/site.db'
+
+db = SQLAlchemy(app)
+
+from blog import routes
+
+
+
+

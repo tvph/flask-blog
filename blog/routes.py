@@ -1,19 +1,10 @@
-from flask import Flask, request, render_template, flash, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-import os
-import datetime
-import secrets
+from flask import request, render_template, flash, redirect, url_for
 from blog.forms import RegistrationForm, LoginForm, SearchForm
-from blog.models import User, Post, db
+from blog.models import User, Post
+from blog import app
 
-
-app = Flask(__name__)
-
-
-app.config['SECRET_KEY'] = str(secrets.token_hex(16))
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
-
 posts = []
 
 
@@ -53,9 +44,8 @@ def login():
             flash(f'Login unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Log in', form=form)
 
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     form = SearchForm()
     return render_template('search.html')
-
-
