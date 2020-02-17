@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}Flask blog{% endblock %}
 {% block header %}
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <!--Left side navbar-->
@@ -10,8 +10,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav mr-auto">
-                    <a href="{{ url_for('home') }}" class="navbar navbar-link">Home</a>
-                    <a href="#" class="navbar navbar-link">About</a>
+                    {% if current_user.is_authenticated %}
+                        <!--if user is authenticated then render this navbar-->
+                        <a href="{{ url_for('home') }}" class="navbar navbar-link">Home</a>
+                        <a href="#" class="navbar navbar-link">About</a>
+                        <a href="{{ url_for('logout') }}" class="navbar navbar-link">Log out</a>
+                    {% else %}
+                        <!--else render this navbar-->
+                        <a href="{{ url_for('register') }}" class="navbar navbar-link">Register</a>
+                        <a href="{{ url_for('login') }}" class="navbar navbar-link">Log in</a>
+                    {% endif %}
                 </div>
             </div>
             <!--Right side navbar-->
@@ -25,9 +33,11 @@
     </nav>
 {% endblock %}
 {% block content %}
-    {% for post in posts %}
-         <h1>{{ post.title }}</h1>
-         <p>By {{ post.author}} on {{ post.date_posted }}</p>
-         <p>{{ post.content }}</p>
-    {% endfor %}
-{% endblock content %}
+    <div class="content">
+        {% for post in posts %}
+            <h1>{{ post.title }}</h1>
+            <p>By {{ post.author}} on {{ post.date_posted }}</p>
+            <p>{{ post.content }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

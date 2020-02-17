@@ -1,4 +1,4 @@
-from blog import app
+from blog import app  # this file use app.run() so import app here
 import os
 
 
