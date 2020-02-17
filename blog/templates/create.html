@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <div class="content">
-        <form action="{{ url_for('login') }}" class="needs-validation" method="POST" novalidate>
+        <form action="{{ url_for('new_post') }}" class="needs-validation" method="POST" novalidate>
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-auto mb-4">New Post</legend>

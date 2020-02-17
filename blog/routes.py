@@ -9,13 +9,17 @@ from PIL import Image
 
 
 # app.config.from_object(os.environ['APP_SETTINGS'])
-posts = []
 
 
 @app.route('/')
+def index():
+    form = LoginForm()
+    return render_template('login.html', title='Index', form=form)
+
+
 @app.route('/home')
 def home():
-    form = LoginForm()
+    posts = Post.query.all()
     return render_template('home.html', posts=posts, title='Home')
 
 
@@ -28,7 +32,7 @@ def save_picture(form_picture):
     # resize picture before save it
     output_size = (125, 125)
     img = Image.open(form_picture)
-    img.thumnail(output_size)
+    img.thumbnail(output_size)
     # save it
     img.save(picture_path)
     return picture_name
@@ -108,6 +112,9 @@ def search():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
+        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
         flash(f'Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create.html', title='New post')
+    return render_template('create.html', title='New post', form=form)
