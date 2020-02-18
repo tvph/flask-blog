@@ -20,7 +20,10 @@ def index():
 @app.route('/home')
 @login_required
 def home():
-    posts = Post.query.all()
+    # set page from request, default to 1, type: int
+    page = request.args.get('page', 1, type=int)
+    # use sqlalchemy pagination
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('home.html', posts=posts, title='Home')
 
 
@@ -31,7 +34,7 @@ def save_picture(form_picture):
     picture_name = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/pictures', picture_name)
     # resize picture before save it
-    output_size = (125, 125)
+    output_size = (100, 100)
     img = Image.open(form_picture)
     img.thumbnail(output_size)
     # save it
@@ -152,10 +155,18 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(404)
-    
     db.session.delete(post)
     db.session.commit()
     flash(f'Your post have been deleted.', 'success')
     return redirect(url_for('home'))
-    
-    
+
+
+@app.route('/user/<string:username>', methods=['GET'])
+def user_posts(username):
+    page = request.args.get('page', 1, type=int)
+    # query all users with user name
+    user = User.query.filter_by(username=username).first_or_404()
+    # query all posts of that user above
+    posts = Post.query.filter_by(author=user)\
+        .order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user)

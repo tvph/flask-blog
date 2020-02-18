@@ -1,9 +1,63 @@
 body {
     margin-top: 5em;
+    background: #fafafa;
 }
+.header-bg {
+    background: rgb(115, 128, 143);
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: #444444;
 }
+.blog-header .navbar-nav .navbar-link {
+    color: #87cef5;
+}
+.blog-header .navbar-nav .navbar-link:hover {
+    color: #7b93d4;
+}
+.blog-header .navbar-nav .navbar-link:active {
+    font-weight: 500;
+}
+
+.content {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+.sidebar-content {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+.article-title {
+    color: #444444;
+}
+a.article-title:hover {
+    color: #4299e6;
+    text-decoration: none;
+}
+.article-content {
+    white-space: pre-line;
+}
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+}
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
 .account-img {
     height: 125px;
     width: 125px;
