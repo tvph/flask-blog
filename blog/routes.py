@@ -207,13 +207,13 @@ def reset_token(token):
     
     user = User.verify_reset_token(token)
     if not user:
-        flask(f'That is invalid token', 'warning')
-        return redirect(url_for('reset_request'))
+        flash(f'That is invalid token', 'warning')
+        return redirect(url_for('reset_password'))
     form = ResetPasswordFrom()
     if form.validate_on_submit():
         hashed_password = crypt.generate_password_hash(form.password.data).decode('utf-8')
         user.password = hashed_password
-        db.session.comit()
+        db.session.commit()
         flash(f'Your password has been updated. You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)

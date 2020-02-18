@@ -28,6 +28,8 @@ app.config['MAIL_USE_SMTP'] = True
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 25
 app.config['MAIL_USE_TLS'] = True
+# you need to export to environment: export EMAIL_USER=... and for EMAIL_PASS too
+# your email need to turn on less secure app on google (if you use google)
 app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)
