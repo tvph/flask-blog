@@ -2,7 +2,7 @@
 {% block title %}Log in{% endblock title %}
 {% block content %}
     <div class="content">
-        <form action="{{ url_for('login') }}" class="needs-validation" method="POST" novalidate>
+        <form action="{{ url_for('users.login') }}" class="needs-validation" method="POST" novalidate>
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-auto mb-4">Log in</legend>
@@ -36,13 +36,13 @@
             <div class="form-group">
                 {{ form.submit(class="btn btn-primary") }}
                 <small class="text-muted ml-2">
-                    <a href="{{ url_for('reset_password') }}">Forgot password?</a>
+                    <a href="{{ url_for('users.reset_password') }}">Forgot password?</a>
                 </small>
             </div>
             
         </form>
     </div>
     <div class="border-top pt-3">
-        <small class="text-muted">Need an account?<a href="{{ url_for('register') }}" class="ml-2">Sign up</a></small>
+        <small class="text-muted">Need an account?<a href="{{ url_for('users.register') }}" class="ml-2">Sign up</a></small>
     </div>
 {% endblock content %}

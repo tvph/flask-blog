@@ -2,7 +2,7 @@
 {% block title %}Register{% endblock title %}
 {% block content %}
     <div class="content">
-        <form action="{{ url_for('register') }}" class="needs-validation" method="POST" novalidate>
+        <form action="{{ url_for('users.register') }}" class="needs-validation" method="POST" novalidate>
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-auto mb-4">Join today</legend>
@@ -66,6 +66,6 @@
         </form>
     </div>
     <div class="border-top pt-3">
-        <small class="text-muted">Already have an account?<a href="{{ url_for('login') }}" class="ml-2">Sign in</a></small>
+        <small class="text-muted">Already have an account?<a href="{{ url_for('users.login') }}" class="ml-2">Sign in</a></small>
     </div>
 {% endblock content %}

@@ -20,7 +20,7 @@ crypt = Bcrypt(app)
 
 # use flask-login extension to manage login
 login_manger = LoginManager(app)
-login_manger.login_view = 'login'
+login_manger.login_view = 'users.login'
 login_manger.login_message_category = 'info'
 
 # config mail sever for this app
@@ -34,8 +34,15 @@ app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)
 
-# import routes in here
-from blog import routes
+# import all blueprints here
+from blog.users.routes import users
+from blog.posts.routes import posts
+from blog.main.routes import main
+
+# then run all these blueprints
+app.register_blueprint(users)
+app.register_blueprint(posts)
+app.register_blueprint(main)
 
 
 
