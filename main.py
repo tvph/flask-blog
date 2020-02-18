@@ -1,7 +1,7 @@
-from blog import creat_app  # this file use app.run() so import app here
+from blog import create_app  # this file use app.run() so import app here
 import os
 
-app = creat_app()
+app = create_app()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
