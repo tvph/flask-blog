@@ -6,6 +6,7 @@ from blog.models import User
 from flask_login import current_user
 from blog import crypt
 
+
 class RegistrationForm(FlaskForm):
 
     username = StringField('Username:', validators=[
@@ -28,7 +29,6 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError(
                 'That email is taken. Please choose another one.')
-
 
 
 class LoginForm(FlaskForm):
@@ -83,6 +83,3 @@ class UpdateForm(FlaskForm):
             if crypt.generate_password_hash(password.data).decode('utf-8') != user.password:
                 raise ValidationError(
                     'Your old password is incorrect. Please try again')
-
-
-

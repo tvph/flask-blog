@@ -1,4 +1,4 @@
-from blog import creat_app # this file use app.run() so import app here
+from blog import creat_app  # this file use app.run() so import app here
 import os
 
 app = creat_app()

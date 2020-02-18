@@ -5,10 +5,11 @@ from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
-# user this decorator to handle all of the sessions 
+# user this decorator to handle all of the sessions
 @login_manger.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,7 +21,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}, {self.email}, {self.picture}')"
-    
+
     # define a method to get reset token, life time = 30 minutes
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -35,6 +36,7 @@ class User(db.Model, UserMixin):
         except:
             return None
         return User.query.get(user_id)
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -24,8 +24,6 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
 
 
-
-
 class ProductionConfig(Config):
     DEBUG = False
 
