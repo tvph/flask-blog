@@ -60,7 +60,15 @@ def delete_post(post_id):
     return redirect(url_for('main.home'))
 
 
-@posts.route('/search', methods=['GET', 'POST'])
+@posts.route('/search', methods=['GET'])
+@login_required
 def search():
-    form = SearchForm()
-    return render_template('search.html')
+    # get keyword by form request
+    keyword = request.args.get('keyword')
+    if request.method == 'GET':
+        # search in Post.content by matching with keyword, then get paginate of it
+        posts = Post.query.filter(Post.content.like('%' + keyword + '%')).order_by(Post.id).paginate(per_page=20)
+        if posts is None:
+            return redirect(url_for('errors.error_404', 404))
+        flash(f'Here is your result', 'success')
+        return render_template('home.html', title='Search', posts=posts)
