@@ -20,6 +20,7 @@ flask-login = "*"
 pillow = "*"
 flask-mail = "*"
 pytest = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
