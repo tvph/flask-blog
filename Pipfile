@@ -21,6 +21,7 @@ pillow = "*"
 flask-mail = "*"
 pytest = "*"
 gunicorn = "*"
+setuptools = "*"
 
 [requires]
 python_version = "3.8"
