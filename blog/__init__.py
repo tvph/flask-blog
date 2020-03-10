@@ -1,9 +1,14 @@
 # init
 from flask import Flask
+# flask sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
+# to hash password
 from flask_bcrypt import Bcrypt
+# to manage login/session
 from flask_login import LoginManager
+# to send mail from server
 from flask_mail import Mail
+
 from blog.config import Config
 # migrating database
 from flask_script import Manager
