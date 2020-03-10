@@ -22,6 +22,8 @@ flask-mail = "*"
 pytest = "*"
 gunicorn = "*"
 setuptools = "*"
+flask-script = "*"
+flask-migrate = "*"
 
 [requires]
 python_version = "3.8"
