@@ -1,7 +1,7 @@
 import os
 import secrets
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
@@ -11,7 +11,7 @@ class Config(object):
     # SECRET KEY config
     SECRET_KEY = str(secrets.token_hex(16))
     # SQLAlchemy config
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'  # os.environ['DATABASE_URI']
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASEDIR, 'site.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # config mail server
     MAIL_USE_SMTP = True
@@ -40,3 +40,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    DEBUG = True
+    SECRET_KEY = 'bad_key'
+    # discard CSRF tokens in the form for testing
+    CSRF_ENABLED = False
