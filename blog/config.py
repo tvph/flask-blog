@@ -16,9 +16,9 @@ class Config(object):
     # config mail server
     MAIL_USE_SMTP = True
     MAIL_SEVER = 'smtp.googlemail.com'
-    MAIL_PORT = 25
+    MAIL_PORT = 587
     MAIL_USE_TLS = True
-    # you need to export to environment: export EMAIL_USER=... and for EMAIL_PASS too
+    # you need to export to environment: export EMAIL_USER=... and for EMAIL_PASS
     # your email need to turn on less secure app on google (if you use google)
     MAIL_USERNAME = os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
@@ -26,6 +26,7 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
 class StagingConfig(Config):
@@ -44,3 +45,4 @@ class TestingConfig(Config):
     SECRET_KEY = 'bad_key'
     # discard CSRF tokens in the form for testing
     CSRF_ENABLED = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
