@@ -1,1 +1,1 @@
-web: python main.py runserver
+web: gunicorn -w 4 "manage:create_app"

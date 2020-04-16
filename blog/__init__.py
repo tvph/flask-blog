@@ -11,8 +11,7 @@ from flask_mail import Mail
 
 from blog.config import Config
 # migrating database
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import Migrate
 
 # use flask_sqlalchemy extension
 db = SQLAlchemy()
@@ -40,13 +39,10 @@ def create_app(config_class=Config):
     mail.init_app(app)
 
     # init migrating database
-    migrate = Migrate(app, db)
-    manager = Manager(app)
-    manager.add_command('db', MigrateCommand)
-    manager.run()
-    # use flask cli to run: flask db init
+    # use flask cli to run: flask db init or pipenv run python wsgi.py db init
     # to create migrations folder
-
+    migrate = Migrate()
+    migrate.init_app(app, db)
 
     # import all blueprints here
     from blog.users.routes import users
