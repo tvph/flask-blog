@@ -1,1 +1,1 @@
-web: gunicorn main:app --runserver
+web: gunicorn main.wsgi
