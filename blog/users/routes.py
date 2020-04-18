@@ -1,9 +1,10 @@
-from flask import (Blueprint, flash, redirect, url_for, render_template, request)
+from flask import (Blueprint, flash, redirect,
+                   url_for, render_template, request)
 from flask_login import login_required, login_user, current_user, logout_user
 from blog import crypt, db
 from blog.models import User, Post
 from blog.users.forms import (UpdateForm, RegistrationForm,
-    LoginForm, RequestResetForm, ResetPasswordFrom)
+                              LoginForm, RequestResetForm, ResetPasswordFrom)
 from blog.users.utils import save_picture, send_reset_email
 
 
@@ -30,7 +31,8 @@ def about():
         form.email.data = current_user.email
     # render to about page
     picture = url_for('static', filename='pictures/' + current_user.picture)
-    return render_template('about.html', title='About', picture=picture, form=form)
+    return render_template('about.html', title='About',
+                           picture=picture, form=form)
 
 
 @users.route('/register', methods=['GET', 'POST'])
@@ -46,8 +48,9 @@ def register():
                     email=form.email.data, password=hashed_pwd)
         db.session.add(user)
         db.session.commit()
-        flash(f'Your account have been created! You are now able to log in', 'success')
-        return redirect(url_for('login'))
+        flash(f'Your account have been created! You are now able to log in',
+              'success')
+        return redirect(url_for('users.login'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -93,9 +96,11 @@ def reset_password():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
-        flash(f'An email sent with instructions to reset your password.', 'info')
+        flash(f'An email sent with instructions to reset your password.',
+              'info')
         redirect(url_for('users.login'))
-    return render_template('reset_request.html', title='Reset password', form=form)
+    return render_template('reset_request.html', title='Reset password',
+                           form=form)
 
 
 @users.route('/reset_password/<token>', methods=['GET', 'POST'])

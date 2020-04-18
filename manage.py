@@ -2,6 +2,7 @@ from blog import create_app  # this file use app.run() so import app here
 # flask script to create command
 from flask_script import Manager
 from flask_migrate import MigrateCommand
+from blog.config import BASEDIR
 
 
 # add db command to migrate db
@@ -15,4 +16,5 @@ if __name__ == '__main__':
     If run shell: python manage.py shell
     If migrate database: python manage.py db [sub-command]
     """
+    print(BASEDIR)
     manager.run()

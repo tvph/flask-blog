@@ -1,5 +1,5 @@
-from flask import (render_template, redirect, url_for, flash, request,
-    abort, Blueprint)
+from flask import (render_template, redirect, url_for, flash,
+                   request, abort, Blueprint)
 from flask_login import current_user, login_required
 from blog import db
 from blog.models import Post
@@ -67,7 +67,8 @@ def search():
     keyword = request.args.get('keyword')
     if request.method == 'GET':
         # search in Post.content by matching with keyword, then get paginate of it
-        posts = Post.query.filter(Post.content.like('%' + keyword + '%')).order_by(Post.id).paginate(per_page=20)
+        posts = Post.query.filter(Post.content.like(
+            '%' + keyword + '%')).order_by(Post.id).paginate(per_page=20)
         if posts is None:
             return redirect(url_for('errors.error_404', 404))
         flash(f'Here is your result', 'success')

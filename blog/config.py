@@ -1,7 +1,11 @@
 import os
 import secrets
+from dotenv import load_dotenv
+
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
+env_path = os.path.join(BASEDIR, '.env')
+load_dotenv(env_path, override=True)
 
 
 class Config(object):
@@ -15,13 +19,13 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # config mail server
     MAIL_USE_SMTP = True
-    MAIL_SEVER = 'smtp.googlemail.com'
-    MAIL_PORT = 587
+    MAIL_SERVER = os.getenv('MAIL_SERVER')
+    MAIL_PORT = os.getenv('MAIL_PORT')
     MAIL_USE_TLS = True
     # you need to export to environment: export EMAIL_USER=... and for EMAIL_PASS
     # your email need to turn on less secure app on google (if you use google)
-    MAIL_USERNAME = os.environ.get('EMAIL_USER')
-    MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 
 
 class ProductionConfig(Config):
