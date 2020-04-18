@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-PARENT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
-env_path = os.path.join(PARENT_DIR, '.env')
+PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+env_path = os.path.join(PROJECT_DIR, '.env')
 load_dotenv(env_path, override=True)
 
 
@@ -16,7 +16,7 @@ class Config(object):
     # SECRET KEY config
     SECRET_KEY = str(secrets.token_hex(16))
     # SQLAlchemy config - use sqlite
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(PARENT_DIR,
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(PROJECT_DIR,
                                                           os.getenv('DB_NAME'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # config mail server
