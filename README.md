@@ -15,6 +15,7 @@
 - `flask-bcrypt`
 - `flask-script`
 - `flask-migrate`
+- `flask-admin`
 - `python-dotenv`
 
 ## How to use?
